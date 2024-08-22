@@ -17,7 +17,7 @@ app.set("views", `${__dirname}/views`);
 app.use(express.static(`${__dirname}/public`));
 
 app.get("/", (req, res) => {
-  res.render("index", { carInfo: null });
+  res.render("index", { bioInfo: null });
 });
 
 app.post("/upload", upload.single("image"), async (req, res) => {
@@ -27,14 +27,14 @@ app.post("/upload", upload.single("image"), async (req, res) => {
   }
 
   try {
-    const carInfoJson = await getCarInfo(imageBuffer);
-    console.log("Server response:", carInfoJson);
-    const carInfo = JSON.parse(carInfoJson);
-    if (carInfo.error) {
-      res.status(400).json({ error: carInfo.error });
+    const bioInfoJson = await getBioInfo(imageBuffer);
+    console.log("Server response:", bioInfoJson);
+    const bioInfo = JSON.parse(bioInfoJson);
+    if (bioInfo.error) {
+      res.status(400).json({ error: bioInfo.error });
     } else {
-      carInfo.imageBase64 = imageBuffer.toString("base64");
-      res.json({ carInfo });
+      bioInfo.imageBase64 = imageBuffer.toString("base64");
+      res.json({ bioInfo });
     }
   } catch (error) {
     console.error("Error:", error);
@@ -51,7 +51,7 @@ app.post("/upload", upload.single("image"), async (req, res) => {
   }
 });
 
-const getCarInfo = async (imageBuffer) => {
+const getBioInfo = async (imageBuffer) => {
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 

@@ -6,12 +6,12 @@ const fileName = document.getElementById("fileName");
 const removeButton = document.getElementById("removeButton");
 const dropText = document.getElementById("dropText");
 
-const carImage = document.getElementById("carImage");
-const carMake = document.getElementById("carMake");
-const carModel = document.getElementById("carModel");
-const carColor = document.getElementById("carColor");
-const carYear = document.getElementById("carYear");
-const carMakeLogo = document.getElementById("carMakeLogo");
+const bioImage = document.getElementById("bioImage");
+const bioMake = document.getElementById("bioMake");
+const bioModel = document.getElementById("bioModel");
+const bioColor = document.getElementById("bioColor");
+const bioYear = document.getElementById("bioYear");
+const bioMakeLogo = document.getElementById("bioMakeLogo");
 
 const errorMessage = document.getElementById("errorMessage");
 
@@ -34,7 +34,7 @@ removeButton.addEventListener("click", function () {
   errorMessage.style.display = "none";
 });
 
-function formatCarMakeForLogo(make) {
+function formatBioMakeForLogo(make) {
   return make.toLowerCase().replace(/ /g, "%20");
 }
 
@@ -71,23 +71,23 @@ runButton.addEventListener("click", function (event) {
         return response.json();
       })
       .then(async (data) => {
-        if (data.carInfo) {
-          carImage.src = "data:image/jpeg;base64," + data.carInfo.imageBase64;
-          const make = data.carInfo.vehicle.manufacturer;
-          carMake.textContent = make;
-          carModel.textContent = data.carInfo.vehicle.model;
-          carColor.textContent = data.carInfo.vehicle.color;
-          carYear.textContent = data.carInfo.vehicle.year;
+        if (data.bioInfo) {
+          bioImage.src = "data:image/jpeg;base64," + data.bioInfo.imageBase64;
+          const make = data.bioInfo.vehicle.manufacturer;
+          bioMake.textContent = make;
+          bioModel.textContent = data.bioInfo.vehicle.model;
+          bioColor.textContent = data.bioInfo.vehicle.color;
+          bioYear.textContent = data.bioInfo.vehicle.year;
 
-          const logoUrl = `https://raw.githubusercontent.com/dangnelson/car-makes-icons/2a7f574ce813e1eeddcca955c87847bc5baa28b6/svgs/${formatCarMakeForLogo(
+          const logoUrl = `https://raw.githubusercontent.com/dangnelson/bio-makes-icons/2a7f574ce813e1eeddcca955c87847bc5baa28b6/svgs/${formatBioMakeForLogo(
             make
           )}.svg`;
           const logoExists = await checkLogoExists(logoUrl);
           if (logoExists) {
-            carMakeLogo.src = logoUrl;
-            carMakeLogo.style.display = "block";
+            bioMakeLogo.src = logoUrl;
+            bioMakeLogo.style.display = "block";
           } else {
-            carMakeLogo.style.display = "none";
+            bioMakeLogo.style.display = "none";
           }
 
           errorMessage.style.display = "none";
@@ -119,7 +119,7 @@ function resetUploadForm() {
 }
 
 function scrollToDetails() {
-  const element = document.querySelector(".car-color");
+  const element = document.querySelector(".bio-color");
   if (element.scrollIntoView) {
     element.scrollIntoView({ behavior: "smooth", block: "start" });
   } else {

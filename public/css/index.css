@@ -133,7 +133,7 @@ footer a:hover {
   transform: scale(1.05);
 }
 
-.car-card-section {
+.bio-biod-section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -143,7 +143,7 @@ footer a:hover {
   padding-bottom: 52px;
 }
 
-.car-card {
+.bio-biod {
   border-radius: 15px;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -152,30 +152,30 @@ footer a:hover {
   transition: transform 0.3s ease;
 }
 
-.car-card:hover {
+.bio-biod:hover {
   transform: scale(1.02);
 }
 
-.car-image {
+.bio-image {
   width: 100%;
   height: auto;
   display: block;
 }
 
-.car-details {
+.bio-details {
   padding: 15px;
   text-align: center;
   background-color: #121212;
   color: white;
 }
 
-.car-details h2,
-.car-details p {
+.bio-details h2,
+.bio-details p {
   margin: 10px 0;
   font-family: "Poppins", sans-serif;
 }
 
-.car-details h2 {
+.bio-details h2 {
   font-size: 1.5em;
   color: #3498db;
 }
@@ -184,21 +184,21 @@ footer a:hover {
   text-transform: uppercase;
 }
 
-.car-details p {
+.bio-details p {
   font-size: 1em;
   color: white;
 }
 
 @media (max-width: 768px) {
-  .car-card {
+  .bio-biod {
     max-width: 90%;
   }
 
-  .car-details h2 {
+  .bio-details h2 {
     font-size: 1.2em;
   }
 
-  .car-details p {
+  .bio-details p {
     font-size: 0.9em;
   }
 }
@@ -243,7 +243,7 @@ footer a:hover {
   }
 }
 
-.car-make-logo {
+.bio-make-logo {
   display: block;
   width: 50px;
   height: auto;
@@ -253,7 +253,7 @@ footer a:hover {
   text-align: center; /* center */
 }
 
-.car-make-logo:hover {
+.bio-make-logo:hover {
   transform: scale(1.1);
 }
 
