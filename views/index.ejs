@@ -1,87 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-J6VP3VL6LR"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-J6VP3VL6LR"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-    gtag('config', 'G-J6VP3VL6LR');
-  </script>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BioVet AI - Identify Any vehicle With AI</title>
-  <meta name="description" content="Upload an image of any vehicle, and our Advanced AI will instantly recognize the make, model, and more.">  
-  <link rel="stylesheet" href="/css/index.css">
-  <link rel="icon" type="image/x-icon" href="/img/favicon.ico">
-  <script src="https://kit.fontawesome.com/0d5ced209e.js" crossorigin="anonymous"></script>
+      gtag("config", "G-J6VP3VL6LR");
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bioVet AI - Identify Any vehicle With AI</title>
+    <meta
+      name="description"
+      content="Upload an image of any vehicle, and our Advanced AI will instantly recognize the make, model, and more."
+    />
+    <link rel="stylesheet" href="/css/index.css" />
+    <link rel="icon" type="image/x-icon" href="/img/favicon.ico" />
+    <script
+      src="https://kit.fontawesome.com/0d5ced209e.js"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- Open Graph Tags -->
-  <meta property="og:url" content="https://BioVet-AI.vercel.app">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="vehicle AI - Identify Any vehicle With AI">
-  <meta property="og:description" content="Upload an image of any vehicle, and our Advanced AI will instantly recognize the make, model, and more.">
-  <meta property="og:image" content="https://BioVet-AI.vercel.app/img/preview.jpg">
+    <!-- Open Graph Tags -->
+    <meta property="og:url" content="https://bioVet-AI.vercel.app" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="vehicle AI - Identify Any vehicle With AI"
+    />
+    <meta
+      property="og:description"
+      content="Upload an image of any vehicle, and our Advanced AI will instantly recognize the make, model, and more."
+    />
+    <meta
+      property="og:image"
+      content="https://bioVet-AI.vercel.app/img/preview.jpg"
+    />
 
-  <!-- Twitter Meta Tags -->
-  <meta name="twitter:biod" content="summary_large_image">
-  <meta property="twitter:domain" content="BioVet-AI.vercel.app">
-  <meta property="twitter:url" content="https://BioVet-AI.vercel.app">
-  <meta name="twitter:title" content="vehicle AI - Identify Any vehicle With AI">
-  <meta name="twitter:description" content="Upload an image of any vehicle, and our Advanced AI will instantly recognize the make, model, and more.">
-  <meta name="twitter:image" content="https://BioVet-AI.vercel.app/img/preview.jpg">
-</head>
+    <!-- Twitter Meta Tags -->
+    <meta name="twitter:biod" content="summary_large_image" />
+    <meta property="twitter:domain" content="bioVet-AI.vercel.app" />
+    <meta property="twitter:url" content="https://bioVet-AI.vercel.app" />
+    <meta
+      name="twitter:title"
+      content="vehicle AI - Identify Any vehicle With AI"
+    />
+    <meta
+      name="twitter:description"
+      content="Upload an image of any vehicle, and our Advanced AI will instantly recognize the make, model, and more."
+    />
+    <meta
+      name="twitter:image"
+      content="https://bioVet-AI.vercel.app/img/preview.jpg"
+    />
+  </head>
 
-<body>
-  <header>
-    <a href="/" aria-label="Home">BioVet-AI</a>
-    <a href="https://github.com/meayushsriv/Hack4Change-Plant-Biohealth-Monitoring" target="_blank" aria-label="Github"><i class="fa-brands fa-github"></i></a>
-  </header>
-  <div class="wrapper">
-    <div class="container">
-      <h1>Identify Any Biological Disease With AI</h1>
-      <p>Upload an image of any plant or animal, and <strong>Advanced AI</strong> will instantly recognize the type, name of disease, causes, and disease.</p>
-      <form action="/upload" method="post" enctype="multipart/form-data" class="upload-section" id="uploadForm">
-        <input type="file" name="image" accept="image/*" required style="display: none;" id="fileInput">
-        <label for="fileInput" class="upload-button" id="uploadButton">Upload Image</label>
-        <button type="submit" class="upload-button" id="runButton" style="display: none;">Run</button>
-        <div class="file-info" id="fileInfo" style="display: none;">
-          <span class="file-name" id="fileName"></span>
-          <button type="button" class="remove-button" id="removeButton">X</button>
-        </div>
-        <p class="drop-text" id="dropText">or drag and drop your image here</p>
-        <div class="drop-zone" id="dropZone" style="display: none;">
-          <p id="dropHereText" style="display: none;">Drop Here</p>
-        </div>      
-      </form>
-    </div>
-  </div>
-
-  <div class="bio-biod-section" style="color: black;">
-    <div id="errorMessage" style="display: none; color: #a3212e; margin-bottom: 10px;"></div>
-    <div class="bio-biod">
-      <img src="/img/default.webp" alt="Bio Image" class="bio-image" id="bioImage">
-      <div class="bio-details">
-        <img src="" alt="Bio Make Logo" class="bio-make-logo" id="bioMakeLogo" style="display: none; width: 70px; height: auto;">
-        <h2 class="bio-make">Type: <span class="make" id="bioMake">N/A</span></h2>
-        <p class="bio-model">Disease Name: <span id="bioModel">N/A</span></p>
-        <p class="bio-year">Cause: <span id="bioYear">N/A</span></p>
-        <p class="bio-color">Cure: <span id="bioColor">N/A</span></p>
-        
+  <body>
+    <header>
+      <a href="/" aria-label="Home">bioVet-AI</a>
+      <a
+        href="https://github.com/meayushsriv/Hack4Change-Plant-biohealth-Monitoring"
+        target="_blank"
+        aria-label="Github"
+        ><i class="fa-brands fa-github"></i
+      ></a>
+    </header>
+    <div class="wrapper">
+      <div class="container">
+        <h1>Identify Any biological Disease With AI</h1>
+        <p>
+          Upload an image of any plant or animal, and
+          <strong>Advanced AI</strong> will instantly recognize the type, name
+          of disease, causes, and disease.
+        </p>
+        <form
+          action="/upload"
+          method="post"
+          enctype="multipart/form-data"
+          class="upload-section"
+          id="uploadForm"
+        >
+          <input
+            type="file"
+            name="image"
+            accept="image/*"
+            required
+            style="display: none"
+            id="fileInput"
+          />
+          <label for="fileInput" class="upload-button" id="uploadButton"
+            >Upload Image</label
+          >
+          <button
+            type="submit"
+            class="upload-button"
+            id="runButton"
+            style="display: none"
+          >
+            Run
+          </button>
+          <div class="file-info" id="fileInfo" style="display: none">
+            <span class="file-name" id="fileName"></span>
+            <button type="button" class="remove-button" id="removeButton">
+              X
+            </button>
+          </div>
+          <p class="drop-text" id="dropText">
+            or drag and drop your image here
+          </p>
+          <div class="drop-zone" id="dropZone" style="display: none">
+            <p id="dropHereText" style="display: none">Drop Here</p>
+          </div>
+        </form>
       </div>
     </div>
-  </div>
 
-  <footer style="color: black;">
-    <p>Developed by <a href="https://github.com/meayushsriv" target="_blank" aria-label="Eduardo Monteiro's GitHub">StackUnderFlow</a>
-      <a href="https://github.com/meayushsriv" target="_blank" aria-label="Eduardo Monteiro's GitHub"><i class="fab fa-github"></i></a>
-      <a href="https://www.linkedin.com/in/meayushsriv/" target="_blank" aria-label="Eduardo Monteiro's Twitter"><i class="fa-brands fa-linkedin"></i></a>
-    </p>
-  </footer>
-  <script src="/js/script.js"></script>
-</body>
+    <div class="bio-biod-section" style="color: black">
+      <div
+        id="errorMessage"
+        style="display: none; color: #a3212e; margin-bottom: 10px"
+      ></div>
+      <div class="bio-biod">
+        <img
+          src="/img/default.webp"
+          alt="bio Image"
+          class="bio-image"
+          id="bioImage"
+        />
+        <div class="bio-details">
+          <img
+            src=""
+            alt="bio Make Logo"
+            class="bio-make-logo"
+            id="bioMakeLogo"
+            style="display: none; width: 70px; height: auto"
+          />
+          <h2 class="bio-make">
+            Type: <span class="make" id="bioMake">N/A</span>
+          </h2>
+          <p class="bio-model">Disease Name: <span id="bioModel">N/A</span></p>
+          <p class="bio-year">Cause: <span id="bioYear">N/A</span></p>
+          <p class="bio-color">Cure: <span id="bioColor">N/A</span></p>
+        </div>
+      </div>
+    </div>
 
+    <footer style="color: black">
+      <p>
+        Developed by
+        <a
+          href="https://github.com/meayushsriv"
+          target="_blank"
+          aria-label="Eduardo Monteiro's GitHub"
+          >StackUnderFlow</a
+        >
+        <a
+          href="https://github.com/meayushsriv"
+          target="_blank"
+          aria-label="Eduardo Monteiro's GitHub"
+          ><i class="fab fa-github"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/in/meayushsriv/"
+          target="_blank"
+          aria-label="Eduardo Monteiro's Twitter"
+          ><i class="fa-brands fa-linkedin"></i
+        ></a>
+      </p>
+    </footer>
+    <script src="/js/script.js"></script>
+  </body>
 </html>

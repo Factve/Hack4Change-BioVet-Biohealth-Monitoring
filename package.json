@@ -1,5 +1,5 @@
 {
-  "name": "BioVet-AI",
+  "name": "bioVet-AI",
   "version": "1.0.0",
   "description": "Identify any vehicle with AI",
   "main": "index.js",

@@ -27,31 +27,30 @@ app.post("/upload", upload.single("image"), async (req, res) => {
   }
 
   try {
-    const bioInfoJson = await getBioInfo(imageBuffer);
-    console.log("Server response:", bioInfoJson);
-    const bioInfo = JSON.parse(bioInfoJson);
+    const bioInfo = await getbioInfo(imageBuffer);
+    console.log("Server response:", bioInfo);
+
     if (bioInfo.error) {
-      res.status(400).json({ error: bioInfo.error });
+      return res.status(400).json({ error: bioInfo.error });
     } else {
       bioInfo.imageBase64 = imageBuffer.toString("base64");
-      res.json({ bioInfo });
+      return res.json({ bioInfo });
     }
   } catch (error) {
     console.error("Error:", error);
     if (error.name === "GoogleGenerativeAIFetchError") {
-      console.error("Google API Error:", error);
-      res.status(500).json({
+      return res.status(500).json({
         error: "A server error occurred at Google's API. Please retry later.",
       });
     } else {
-      res.status(500).json({
+      return res.status(500).json({
         error: "An unexpected error occurred on the server.",
       });
     }
   }
 });
 
-const getBioInfo = async (imageBuffer) => {
+const getbioInfo = async (imageBuffer) => {
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
@@ -106,17 +105,19 @@ const getBioInfo = async (imageBuffer) => {
     },
   ];
 
-  const result = await model.generateContent({
-    contents: [{ role: "user", parts }],
-    generationConfig,
-    safetySettings,
-  });
+  try {
+    const result = await model.generateContent({
+      contents: [{ role: "user", parts }],
+      generationConfig,
+      safetySettings,
+    });
 
-  const response = result.response;
-  return response
-    .text()
-    .replace(/```json/g, "")
-    .replace(/```/g, "");
+    const responseText = result.response.text();
+    return JSON.parse(responseText.replace(/```json|```/g, ""));
+  } catch (error) {
+    console.error("Error while parsing the API response:", error);
+    throw error;
+  }
 };
 
 const port = process.env.PORT || 3000;

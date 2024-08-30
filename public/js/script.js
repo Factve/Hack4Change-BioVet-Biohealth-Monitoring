@@ -34,7 +34,7 @@ removeButton.addEventListener("click", function () {
   errorMessage.style.display = "none";
 });
 
-function formatBioMakeForLogo(make) {
+function formatbioMakeForLogo(make) {
   return make.toLowerCase().replace(/ /g, "%20");
 }
 
@@ -79,7 +79,7 @@ runButton.addEventListener("click", function (event) {
           bioColor.textContent = data.bioInfo.vehicle.color;
           bioYear.textContent = data.bioInfo.vehicle.year;
 
-          const logoUrl = `https://raw.githubusercontent.com/dangnelson/bio-makes-icons/2a7f574ce813e1eeddcca955c87847bc5baa28b6/svgs/${formatBioMakeForLogo(
+          const logoUrl = `https://raw.githubusercontent.com/dangnelson/bio-makes-icons/2a7f574ce813e1eeddcca955c87847bc5baa28b6/svgs/${formatbioMakeForLogo(
             make
           )}.svg`;
           const logoExists = await checkLogoExists(logoUrl);
