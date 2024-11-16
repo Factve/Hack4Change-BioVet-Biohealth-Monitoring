@@ -80,30 +80,37 @@ const getbioInfo = async (imageBuffer) => {
     },
   ];
 
-  const parts = [
+const parts = [
+  {
+    text: `Analyze the flower's petal and sepal measurements to classify the type of flower.
+    Respond in the following JSON format:
     {
-      text: `Analyze the image to diagnose plant or animal diseases. Respond in the following JSON format:
-      {
-        "vehicle": {
-          "manufacturer": "plant" or "animal" or "human",
-          "model": "type the name of disease here.",
-          "color": "write the cure here in 200 words in one paragraph not in points."
-          "year": "give the cause in string in 200 words in one paragraph not in points."
-        }
+      "flower": {
+        "name": "type the flower's name here (e.g., Setosa, Versicolor, Virginica)",
+        "description": "provide a brief description of the flower, including key characteristics, in 200 words or less."
       }
+    }
 
-      If the image does not contain a plant or animal, respond in this format:
-      {
-        "error": "The image does not contain a plant or animal."
-      }`,
-    },
+    If the measurements do not correspond to a known flower, respond in this format:
     {
-      inlineData: {
-        mimeType: "image/jpeg",
-        data: imageBuffer.toString("base64"),
-      },
+      "error": "The measurements do not match any known flower."
+    }`,
+  },
+  {
+    inlineData: {
+      mimeType: "application/json",
+      data: JSON.stringify({
+        sepalLength: 5.1,  // example value
+        sepalWidth: 3.5,   // example value
+        petalLength: 1.4,  // example value
+        petalWidth: 0.2,   // example value
+      }),
     },
-  ];
+  },
+];
+
+
+
 
   try {
     const result = await model.generateContent({
