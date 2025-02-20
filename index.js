@@ -16,12 +16,10 @@ app.set("view engine", "ejs");
 app.set("views", `${__dirname}/views`);
 app.use(express.static(`${__dirname}/public`));
 
-// Serve the homepage
 app.get("/", (req, res) => {
   res.render("index", { bioInfo: null });
 });
 
-// Handle image upload and processing
 app.post("/upload", upload.single("image"), async (req, res) => {
   const imageBuffer = req.file ? req.file.buffer : null;
   if (!imageBuffer) {
@@ -29,7 +27,7 @@ app.post("/upload", upload.single("image"), async (req, res) => {
   }
 
   try {
-    const bioInfo = await getBioInfo(imageBuffer);
+    const bioInfo = await getbioInfo(imageBuffer);
     console.log("Server response:", bioInfo);
 
     if (bioInfo.error) {
@@ -40,7 +38,6 @@ app.post("/upload", upload.single("image"), async (req, res) => {
     }
   } catch (error) {
     console.error("Error:", error);
-
     if (error.name === "GoogleGenerativeAIFetchError") {
       return res.status(500).json({
         error: "A server error occurred at Google's API. Please retry later.",
@@ -53,8 +50,7 @@ app.post("/upload", upload.single("image"), async (req, res) => {
   }
 });
 
-// Function to analyze the image using Google Generative AI
-const getBioInfo = async (imageBuffer) => {
+const getbioInfo = async (imageBuffer) => {
   const genAI = new GoogleGenerativeAI(API_KEY);
   const model = genAI.getGenerativeModel({ model: MODEL_NAME });
 
@@ -91,7 +87,7 @@ const getBioInfo = async (imageBuffer) => {
         "vehicle": {
           "manufacturer": "plant" or "animal" or "human",
           "model": "type the name of disease here.",
-          "color": "write the cure here in 200 words in one paragraph not in points.",
+          "color": "write the cure here in 200 words in one paragraph not in points."
           "year": "give the cause in string in 200 words in one paragraph not in points."
         }
       }
@@ -124,7 +120,6 @@ const getBioInfo = async (imageBuffer) => {
   }
 };
 
-// Start the server
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
   console.log(`App is running on port ${port}`);
